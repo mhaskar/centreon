@@ -48,15 +48,15 @@ if (!$pearDB) {
 try {
     // Add columns to check last user's LDAP sync timestamp
     $pearDB->query(
-        "ALTER TABLE `contact` ADD COLUMN IF NOT EXISTS `contact_ldap_last_sync` INT(11) NOT NULL DEFAULT 0;"
+        "ALTER TABLE `contact` ADD COLUMN `contact_ldap_last_sync` INT(11) NOT NULL DEFAULT 0;"
     );
     $pearDB->query(
-        "ALTER TABLE `contact` ADD COLUMN IF NOT EXISTS `contact_ldap_required_sync` enum('0','1') NOT NULL DEFAULT '0';"
+        "ALTER TABLE `contact` ADD COLUMN `contact_ldap_required_sync` enum('0','1') NOT NULL DEFAULT '0';"
     );
 
     // Add a column to check last specific LDAP sync timestamp
     $pearDB->query(
-        "ALTER TABLE `auth_ressource` ADD COLUMN IF NOT EXISTS `ar_sync_base_date` INT(11) DEFAULT 0;"
+        "ALTER TABLE `auth_ressource` ADD COLUMN `ar_sync_base_date` INT(11) DEFAULT 0;"
     );
 } catch (\PDOException $e) {
     $centreonLog->insertLog(
